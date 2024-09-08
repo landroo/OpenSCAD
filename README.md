@@ -24,5 +24,5 @@ OpenSCAD
 
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/IMG_20240906_202147.jpg)
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/IMG_20240906_202233.jpg)
-![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/Képernyőkép 2024-09-08 151249.png)
+![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/2024-09-08 151249.png)
 
