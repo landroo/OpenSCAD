@@ -19,9 +19,7 @@ Tool holder
 
 Box organizer
 
-![alt tag](https://github.com/landroo/OpenSCAD/blob/main/resizable-box-organizer/large_display_6c3ba5b4-096a-4d56-ae1b-0b4b28f5e648.png)
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/resizable-box-organizer/large_display_742b7bb0-650c-4a57-a67e-f58768eea6c7.png)
-![alt tag](https://github.com/landroo/OpenSCAD/blob/main/resizable-box-organizer/large_display_9c4fdc89-3da1-4c9b-a31c-67e0148b6de0.png)
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/resizable-box-organizer/large_display_cd3d0038-f1b2-435c-bee0-29790c479547.png)
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/resizable-box-organizer/large_display_f4f1308f-32d2-41c6-a002-f1e8551aee0f.png)
 
@@ -32,8 +30,6 @@ Tool organizer
 
 Mug
 
-![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/IMG_20240906_202147.jpg)
-![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/IMG_20240906_202233.jpg)
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/mug/2024-09-08151249.png)
 
 Cup
@@ -55,3 +51,8 @@ Enclosure
 Plate
 
 ![alt tag](https://github.com/landroo/OpenSCAD/blob/main/plate/2024-09-12_125050.png)
+
+
+Soda machine
+
+![alt tag](https://github.com/landroo/OpenSCAD/blob/main/soda/2024-10-03105937.png)
