@@ -92,23 +92,23 @@ difference(){
 
 difference(){
   union(){
-    translate([18.5, 41, 16])
+    translate([18.5, 42, 16])
       cylinder(9, 37/2, 37/2);
 
-    translate([18.5, 41, 16])
+    translate([18.5, 42, 16])
       cylinder(11, 16, 16);
 
-    translate([18.5, 41, 25])
+    translate([18.5, 42, 25])
       rotate_extrude(convexity = 10)
         translate([16.5, 0, 0])
           circle(r = 2, $fn = 100);
     
-    translate([18.5, 41, 16])
+    translate([18.5, 42, 16])
       cylinder(2, 22, 22);
     
   }
 
-  translate([0, 60, 0])
+  translate([0, 61, 0])
     cube([37, 10, 26]);
 }
 
