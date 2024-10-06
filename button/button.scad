@@ -61,6 +61,11 @@ module foot(){
       cylinder(h + 1, 4.2, 4.2);
   }
   
+  translate([xs / 2 - 3.5, ys / 2, -6])
+    cylinder(1, 1, 1);
+  translate([xs / 2 + 3.5, ys / 2, -6])
+    cylinder(1, 1, 1);
+  
   translate([xs / 2, ys / 2, -5])
     spring(d = 11.5, windings=2, height=8, wireDiameter=2);
 }
@@ -99,9 +104,9 @@ module spring(d, dBottom=6, dTop=6, windings=2, height=10, steps=10, wireDiamete
     }
 }
 
-//translate([0, 0, -2])
+translate([0, 0, -2])
   button();
 
-//foot();
+foot();
 
 
