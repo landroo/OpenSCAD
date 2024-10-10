@@ -22,54 +22,6 @@ module rounded_cube(size,r,center=false)
     }
 }
 
-module button() {
-  difference(){
-    rounded_cube([xs, ys, h], 1);
-    cube([xs, ys, h -4]);
-    translate([2, 2, 0])
-      cube([xs - 4, ys - 4, h - 2]);
-  }
-
-  difference(){
-    union() {
-      translate([xs / 2, ys / 2, -4])
-        cylinder(h + 2, 3, 3);
-      translate([xs / 2, ys / 2, -6])
-        cylinder(h / 2 - 1, 2, 3.4);
-    }
-
-    translate([xs / 4, ys / 2 - 1, -9])
-      cube([10, 2, 10]);
-  }
-  
-}
-
-module foot(){
-  difference(){
-    translate([xs / 2, ys / 2, -6])
-      cylinder(h - 1, 4.2, 4.2);
-
-    translate([xs / 2, ys / 2, -7])
-      cylinder(h + 2, 3.2, 3.2);
-  }
-
-  difference(){
-    translate([-1, -1, -6])
-      cube([xs + 2, ys + 2, 1]);
-
-    translate([xs / 2, ys / 2, -7])
-      cylinder(h + 1, 4.2, 4.2);
-  }
-  
-  translate([xs / 2 - 3.5, ys / 2, -6])
-    cylinder(1, 1, 1);
-  translate([xs / 2 + 3.5, ys / 2, -6])
-    cylinder(1, 1, 1);
-  
-  translate([xs / 2, ys / 2, -5])
-    spring(d = 11.5, windings=2, height=8, wireDiameter=2);
-}
-
 module line(start, end, d, fn=4) {
   hull() {
     node(start,d, fn);
@@ -104,9 +56,219 @@ module spring(d, dBottom=6, dTop=6, windings=2, height=10, steps=10, wireDiamete
     }
 }
 
-translate([0, 0, -2])
-  button();
+module button1() {
+  difference(){
+    rounded_cube([xs, ys, h], 1);
+    cube([xs, ys, h -4]);
+    translate([2, 2, 0])
+      cube([xs - 4, ys - 4, h - 2]);
+  }
 
-foot();
+  difference(){
+    union() {
+      translate([xs / 2, ys / 2, -4])
+        cylinder(h + 2, 3, 3);
+      translate([xs / 2, ys / 2, -6])
+        cylinder(h / 2 - 1, 2, 3.4);
+    }
 
+    translate([xs / 4, ys / 2 - 1, -9])
+      cube([10, 2, 10]);
+  }
+  
+}
 
+module button2() {
+  difference(){
+    union(){
+      translate([2, 2, 0])
+        rounded_cube([xs - 4, ys - 4, h], 1);
+      
+      translate([1, 1, 2])
+        cube([xs - 2, ys - 2, 1]);
+    }
+    cube([xs, ys, h -4]);
+    
+    translate([4, 4, 0])
+      cube([xs - 8, ys - 8, h - 2]);
+  }
+  
+  translate([xs / 2, ys / 2, 2])
+    cylinder(3, 3, 3);
+}
+
+module foot1(){
+  difference(){
+    translate([xs / 2, ys / 2, -6])
+      cylinder(h - 1, 4.2, 4.2);
+
+    translate([xs / 2, ys / 2, -7])
+      cylinder(h + 2, 3.2, 3.2);
+  }
+
+  difference(){
+    translate([0, 0, -6])
+      cube([xs, ys, 1]);
+
+    translate([xs / 2, ys / 2, -7])
+      cylinder(h + 1, 4.2, 4.2);
+    
+    translate([3, 3, -9])
+      cylinder(5, 1, 1);
+    
+    translate([3, ys - 3, -9])
+      cylinder(5, 1, 1);
+
+    translate([xs - 3, ys - 3, -9])
+      cylinder(5, 1, 1);
+    
+    translate([xs - 3, 3, -9])
+      cylinder(5, 1, 1);
+    
+  }
+  
+  translate([xs / 2 - 3.5, ys / 2, -6])
+    cylinder(1, 1, 1);
+  translate([xs / 2 + 3.5, ys / 2, -6])
+    cylinder(1, 1, 1);
+  
+  //translate([xs / 2, ys / 2, -5])
+  //  spring(d = 11.5, windings=2, height=8, wireDiameter=2);
+}
+
+module foot2(){
+  difference(){
+    translate([0, 0, -8])
+      cube([xs, ys, 1]);
+  
+    translate([1.8, 1.8, -9])
+      rounded_cube([xs - 3.5, ys - 3.5, h], 1);
+  }
+  
+  translate([0, 0, -12])
+    difference(){
+      translate([-1, -1, 0])
+        cube([xs + 2, ys + 2, 5]);
+      cube([xs, ys, 8]);
+    }
+}
+
+module tpu() {
+  difference(){
+    union(){
+      translate([0, 0, -11])
+        cube([xs, ys, 1]);
+    
+      translate([xs / 2, ys / 2, -11])
+        cylinder(2, 6.2, 4.2);
+    }
+  
+    translate([xs / 2, ys / 2, -11.5])
+      cylinder(2, 5, 4);
+
+    translate([9, 18, -9.3])
+      rotate([90, 0, 0])
+        cylinder(ys, .5, .5);
+    
+    translate([18, 9, -11])
+      rotate([90, 0, -90])
+        cylinder(xs + 1, .9, .9);
+    
+    translate([3, 3, -12])
+      cylinder(3, 2, 2);
+    
+    translate([3, ys - 3, -12])
+      cylinder(3, 2, 2);
+    
+    translate([xs - 3, ys - 3, -12])
+      cylinder(3, 2, 2);
+    
+    translate([xs - 3, 3, -12])
+      cylinder(3, 2, 2);
+  
+  }
+  
+}
+
+module base(th) {
+  
+  translate([0, 0, -14])
+    cube([xs, ys, 1]);
+  
+  translate([3, 3, -14])
+    cylinder(th, 2, 2);
+  
+  translate([3, ys - 3, -14])
+    cylinder(th, 2, 2);
+  
+  translate([xs - 3, ys - 3, -14])
+    cylinder(th, 2, 2);
+  
+  translate([xs - 3, 3, -14])
+    cylinder(th, 2, 2);
+
+  if(th > 2) {
+    translate([3, 3, -14])
+      cylinder(th + 1, 1, 1);
+      
+    translate([3, ys - 3, -14])
+      cylinder(th + 1, 1, 1);
+      
+    translate([xs - 3, ys - 3, -14])
+      cylinder(th + 1, 1, 1);
+      
+    translate([xs - 3, 3, -14])
+      cylinder(th + 1, 1, 1);
+  }
+  difference(){
+    translate([18, 9, -13])
+      rotate([90, 0, -90])
+        cylinder(xs, .9, .9);
+  
+    translate([18, 9, -12.5])
+      rotate([90, 0, -90])
+        cylinder(xs + 1, .5, .5);
+  }
+  
+}
+
+module button(bt){
+  difference(){
+    union(){
+      if(bt == 1){
+        translate([0, 0, -3])
+          button1();
+
+        translate([0, 0, -1])
+          foot1();
+        
+        translate([0, 0, 2])
+          base(5);
+        
+      }
+      else {
+        translate([0, 0, -11])
+          button2();
+
+        foot2();  
+        
+        translate([0, 0, 2])
+          base(2);
+      }
+      
+      tpu();
+      
+    }
+    
+    translate([9, -5, -20]) cube([30,30,30]);
+  }
+}
+
+button(2);
+
+/*
+for (px =[0:9])
+  for (py =[0:3])
+    translate([px * (xs + .2), py * (ys + .2), 0]) button();
+
+*/
