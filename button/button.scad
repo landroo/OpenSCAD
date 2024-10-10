@@ -144,13 +144,24 @@ module foot2(){
     translate([1.8, 1.8, -9])
       rounded_cube([xs - 3.5, ys - 3.5, h], 1);
   }
-  
-  translate([0, 0, -12])
-    difference(){
-      translate([-1, -1, 0])
-        cube([xs + 2, ys + 2, 5]);
-      cube([xs, ys, 8]);
-    }
+
+  difference(){
+    translate([0, 0, -12])
+      difference(){
+        translate([-1, -1, 0])
+          cube([xs + 2, ys + 2, 5]);
+        cube([xs, ys, 8]);
+        
+      }
+    
+    translate([9, 20, -9.3])
+      rotate([90, 0, 0])
+        cylinder(ys / 2, .5, .5);
+
+    translate([xs + 10, 9, -10.5])
+      rotate([90, 0, -90])
+        cylinder(xs + 6, .5, .5);      
+  }
 }
 
 module tpu() {
