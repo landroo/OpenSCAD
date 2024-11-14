@@ -83,8 +83,7 @@ translate([128, 45, 2])
         cylinder(5, 1, 1);
     }    
 
-//translate([20, 3, 16])
-    //cube([104, 8, 22]);
+color([1, 0, 0, .2])translate([20, 3, 16])cube([104, 8, 22]);
 
 translate([29.5, 7, 29.5])
     rotate([90, 0, 0])    

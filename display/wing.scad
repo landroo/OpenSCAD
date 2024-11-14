@@ -40,5 +40,5 @@ module wing(){
     
 }
 
-//wing();
-mirror([1, 0, 0]) wing();
+wing();
+//mirror([1, 0, 0]) wing();
