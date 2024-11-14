@@ -12,11 +12,13 @@ module wing(){
                         polygon(a);
 
                 translate([7, 0, 0])        
-                    cylinder(2, 7, 7);        
+                    cylinder(4, 7, 7);        
+                
+
             }
             
             translate([7, 0, -1])        
-                cylinder(4, 5.1, 5.1); 
+                cylinder(6, 5.2, 5.2); 
      
             translate([-1, 180, -2])
                 cube([10, 40, 10]);
@@ -24,20 +26,19 @@ module wing(){
         }
 
     translate([0, 30, -2])    
-        cube([45, 20, 2]);    
+        cube([45, 150, 2]);    
         
-    translate([0, 170, -2])    
-        cube([45, 10, 2]);        
+    difference(){    
+        translate([0, 30, 0])
+            cube([45, 10, 6]);
         
-    translate([0, 80, -2])    
-        cube([45, 10, 2]);        
+        translate([-1, 32, 0])
+            cube([12, 12, 6]);
         
-    translate([0, 125, -2])    
-        cube([45, 10, 2]);        
+    }   
         
-    translate([35, 30, -2])    
-        cube([10, 150, 2]);            
-    
+    translate([0, 30, 6])    
+        cube([45, 14, 2]);
 }
 
 wing();
