@@ -7,7 +7,7 @@ h=20;
 l=107;
 w=70;
 wl=4;
-half = 1;
+half = 2;
 
 
 module side(x, y, z, l1, r1, r2){
@@ -98,7 +98,11 @@ difference(){
     // USB2
     translate([95, -3, 11])
         cube([9, 10, 4]);
-    
+        
+    // speaker
+    translate([l - 15, w / 2, 15])
+        cylinder(10, 12, 12);
+      
     // half 1
     if(half == 1)
       translate([-5,  -5, h / 3])
@@ -129,14 +133,18 @@ difference() {
 
 
 // half 2
-if(half == 2)
-difference() {
-    translate([-1, -1, h/3])
-        cube([l + 2, w + 2, 4]);
-    
-    translate([0, 0, h/3 - 1])
-        cube([l , w , 7]);
-    
-}
+if(half == 2) {
+  for(i =[1:3:30])
+  translate([i + l - 30, w / 3 - 2, h])
+    cube([2, 30, 2]);
 
+  difference() {
+      translate([-1, -1, h/3])
+          cube([l + 2, w + 2, 4]);
+      
+      translate([0, 0, h/3 - 1])
+          cube([l , w , 7]);
+      
+  }
+}
 //color([1, 0, 0, .2]) cube([l, w, h]);
