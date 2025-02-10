@@ -3,10 +3,11 @@ $fs = 0.4;
 
 // 70*90
 
-h=18;
-l=90;
+h=20;
+l=107;
 w=70;
 wl=4;
+half = 1;
 
 
 module side(x, y, z, l1, r1, r2){
@@ -79,44 +80,63 @@ difference(){
         cylinder(10, 2, 2);
     
     // Bt1
-    translate([55, 53, 15])
-        cylinder(10, 4, 4);
+    translate([52, 59, 15])
+        cylinder(10, 6, 6);
     
     // Bt2
-    translate([65, 43, 15])
-        cylinder(10, 4, 4);
+    translate([62, 42, 15])
+        cylinder(10, 6, 6);
         
     // USB1
-    translate([35, 63, 5])
+    translate([35, 63, 0])
         cube([9, 10, 4]);
         
-    // USB2
-    translate([55, 63, 5])
-        cube([9, 10, 4]);
-
     // Switch
-    translate([75, 63, 5])
+    translate([65, 63, 11])
+        cube([13, 10, 4]);
+
+    // USB2
+    translate([95, -3, 11])
         cube([9, 10, 4]);
     
     // half 1
-    //translate([-5,  -5, h / 2])
-        //cube([l + 10, w + 10, h + 10]);
+    if(half == 1)
+      translate([-5,  -5, h / 3])
+          cube([l + 10, w + 10, h + 10]);
 
     // half 2
-    //translate([-5, -5, -3])
-        //cube([l + 10, w + 10, h / 2 + 3]);
+    if(half == 2)
+      translate([-5, -5, -3])
+          cube([l + 10, w + 10, h / 2 + 3]);
 
 }
 
-// add or remove
+// half 1
+if(half == 1)
 difference() {
-    translate([-1, -1, h/2])
+    translate([0, 0, h/3])
+        rbox(l, w, 4);
+    
+    translate([0, 0, h/3 - 3])
+        cube([l , w , 10]);
+
+    translate([-1, -1, h/3 - 3])
+        cube([l + 2 , w + 2 , 10]);
+
+    translate([-3, -3, h/3 + 4])
+        cube([l + 6, w + 6, 10]);
+}    
+
+
+// half 2
+if(half == 2)
+difference() {
+    translate([-1, -1, h/3])
         cube([l + 2, w + 2, 4]);
     
-    translate([0, 0, h/2 - 1])
+    translate([0, 0, h/3 - 1])
         cube([l , w , 7]);
     
 }
-
 
 //color([1, 0, 0, .2]) cube([l, w, h]);
