@@ -139,64 +139,79 @@ module case() {
           cube([24, 12, 72]);
       }
 
-
-  // top
-  translate([0, -1, 0]) top();
-  module top(){
-      // hud
-      translate([60, -68, 16])
-        cube([40, 71, 2]);
       
-      // side
+   // top
+   top();
+   module top(){
+      translate([62, -68, 16])
+        cube([40, 71, 2]);
+
+      // left
       translate([14, -68, 16])
-        cube([46, 16, 2]);
-      translate([14, -53, 16])    
-        cube([46, 2, 12]);
-      // side    
-      translate([14, -13, 16])
-        cube([46, 16, 2]);
-      translate([14, -13, 16])    
-        cube([46, 2, 12]);
-          
-      translate([42, -53, 16])
+         cube([48, 9, 2]);
       difference(){
-         union() {
-            // front
-            translate([16, 0, 0])
-               cube([2, 42, 12]);
-            translate([-28, 0, 10])
-               cube([45, 42, 2]);
-         }  
-         // poles
-         translate([5, 8, 2])
-            cube([34, 2, 12]);
-         translate([5, 20, 2])
-            cube([34, 2, 12]);
-         translate([5, 32, 2])
-            cube([34, 2, 12]);
-         // connector
-         translate([-2, 21, 6])
-            rotate([0, 90, 0])
-              cylinder(30, 4, 4);
-         // upper
-         translate([-10, 13, 4])
-            cube([10, 10, 10]);
-         translate([-5, 22, 4])
-            cylinder(10, 5, 5);
-            
+         translate([12, -59, 16])
+            cube([66, 2, 16]);
+         translate([71, -63, 33])
+            rotate([0, 45, 0])
+               cube([10, 10, 10]);
       }
-      // rail
-      translate([14, -11, 24])
-        cube([46, 4, 4]);
-      translate([14, -57, 24])
-        cube([46, 4, 4]);
 
-      //
-      translate([20, -24, 27])
-         rotate([90, 0, 0])
-            cylinder(16, 2, 2);
-  }      
+      // right
+      translate([14, -7, 16])
+        cube([48, 8, 2]);
+      difference(){
+         translate([12, -9, 16])    
+            cube([66, 2, 16]);
+         translate([71, -10, 33])
+            rotate([0, 45, 0])
+               cube([10, 10, 10]);
+      }
 
+      // top  
+      translate([42, -60, 16])
+         difference(){
+           union() {
+             translate([20, 1, 0])
+               cube([2, 52, 16]);
+             translate([-30, 1, 14])
+               cube([52, 52, 2]);
+          }
+          
+          // poles
+          translate([-6, 6, 2])
+            cube([34, 2, 16]);
+          translate([10, 13, 2])
+            cube([34, 2, 16]);
+          translate([-6, 46, 2])
+            cube([34, 2, 16]);
+          
+          // connector
+          translate([-2, 31, 10])
+            rotate([0, 90, 0])
+              cylinder(30, 4, 4);          
+          translate([15, 27, 3])
+            cube([10, 8, 8]);
+      }
+      
+      // rails
+      difference(){
+         translate([12, -7, 24])
+           cube([58, 4, 8]);
+         translate([70, -7, 20])
+            rotate([0, 0, 45])
+               cube([6, 6, 20]);
+      }
+      difference(){
+         translate([12, -63, 24])
+            cube([58, 4, 8]);      
+         translate([70, -67.5, 20])
+            rotate([0, 0, 45])
+               cube([6, 6, 20]);
+      }
+       
+   }
+   
   // front
   translate([100, -68, 0])    
       cube([2, 71, 18]);
@@ -206,34 +221,36 @@ module case() {
       cube([2, 71, 18]);
   
   // shoulder
-  translate([0, -1, 0]) shoulder();
+  shoulder();
   module shoulder() {
       difference() {
          translate([-2, -68, 18])
-            cube([27, 71, 14]);
+            cube([35, 71, 15]);
         
-         translate([-4, 10, 12])
-            rotate([45, 0, 0])
-               cube([30,30,30]);
+         //side
+         translate([-4, 3, 10])
+            rotate([14, 0, 0])
+               cube([40,40,40]);
+         //side
+         translate([-4, -72, 2])
+            rotate([76, 0, 0])
+               cube([40,40,40]);
 
-         translate([-4, -74, 12])
-            rotate([45, 0, 0])
-               cube([30,30,30]);
-         // left
-         translate([-30, -74, 33])
+         // back
+         translate([-30, -70, 33])
             rotate([0, 45, 0])
                cube([30,80,30]);
          // right
-         translate([12, -74, 31])
+         translate([18, -70, 40])
             rotate([0, 60, 0])
-               cube([30,80,30]);
+               cube([50,100,50]);
          // bottom
-         translate([12, -51, 10])
-            cube([50, 38, 16]);
-         // top
-         translate([5, -74, 30])
-            cube([10, 80, 10]);
+         translate([12, -58, 10])
+            cube([50, 52, 16]);
+        // top
+        //translate([5, -74, 30])
+          //  cube([10, 80, 10]);
       }
-   }
+  }
 }
 
