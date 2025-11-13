@@ -1,12 +1,18 @@
 $fa = 4;
 $fs = 0.4;
 
-eyes = 3;   // 1-6
+eyes = 3;   // 1-7
 nose = 1;   // 1-2
-mouth = 3;  // 1-6
+mouth = 6;  // 1-8
 stem = 0;   // 1
 
-pumpkinhead(eyes, nose, mouth);
+difference() {
+   scale([2, 2, 2])
+   pumpkinhead(eyes, nose, mouth);
+  translate([0, 0, 16])
+   cylinder(20, 2.6, 2.6);
+}
+
 
 /*
 for(i = [1:1:6])
@@ -35,16 +41,19 @@ module pumpkinhead(eyes, nose, mouth) {
     if(eyes == 4) eyes4();
     if(eyes == 5) eyes5();
     if(eyes == 6) eyes6();
+    if(eyes == 7) eyes7();
     
     if(nose == 1) nose1();
     if(nose == 2) nose2();
     
-    if(mouth == 1) mouth1();
+    if(mouth == 1) mouth1(true);
     if(mouth == 2) mouth2();
     if(mouth == 3) mouth3();
-    if(mouth == 4) mouth4();
+    if(mouth == 4) mouth4(true);
     if(mouth == 5) mouth5();
     if(mouth == 6) mouth6();
+    if(mouth == 7) mouth7(true);
+    if(mouth == 8) mouth7(true);
 
     resize([22, 22, 18])
     sphere(22);          
@@ -64,12 +73,15 @@ module pumpkin(){
 
 module stem() {
   color([0.5, 1, .1, 1]) {
+
   translate([0, 0, 9]) {
-    resize([4, 6, 6])
-    cylinder(20, 5, 3);
-    resize([6, 4, 6])
-    cylinder(10, 5, 3);
+    resize([5, 4, 5])
+    cylinder(20, 8, 6);
+    
+    resize([4, 5, 5])
+    cylinder(10, 8, 6);
   }
+
   if(stem == 1) {
     hull(){
       translate([0, 0, 15])
@@ -239,6 +251,39 @@ module eyes6(){
    }
 }
 
+module eyes7(){
+  translate([0, -5, 2]){
+     difference(){
+       rotate([45, 0, 0])
+       cube([20, 5, 5]);
+
+       translate([-1, -4, 3])
+       cube([22, 8, 8]);
+       
+       translate([2, 0, 3])
+       rotate([0, 90, 0])
+       cylinder(10, 1.5, 1.5);
+     }
+    
+   }
+
+   translate([0, 5, 2]){
+     difference(){
+       rotate([45, 0, 0])
+       cube([20, 5, 5]);
+
+       translate([-1, -4, 3])
+       cube([22, 8, 8]);
+       
+       translate([2, 0, 3])
+       rotate([0, 90, 0])
+       cylinder(10, 1.5, 1.5);
+     }
+    
+   }
+}
+
+
 module nose1() {
   translate([0, 0, 0])
   rotate([0, 90, 0])
@@ -262,7 +307,7 @@ module nose2() {
    }
 }
 
-module mouth1(){
+module mouth1(tooth = true){
   difference(){
     resize([20, 20, 7])
     rotate([0, 90, 0])
@@ -271,14 +316,15 @@ module mouth1(){
       translate([-4, 0, -1])
       cylinder(20, 10, 10); 
     }
-
-    translate([-1, -6, -4])
-    cube([22, 2, 2]);
-    translate([-1, 4, -4])
-    cube([22, 2, 2]);
-    translate([-1, -1, -6])
-    cube([22, 2, 2]);
-  }     
+   if(tooth){
+       translate([-1, -6, -4])
+       cube([22, 2, 2]);
+       translate([-1, 4, -4])
+       cube([22, 2, 2]);
+       translate([-1, -1, -6])
+       cube([22, 2, 2]);
+     }     
+  }
 }
 
 module mouth2(){
@@ -357,20 +403,22 @@ module mouth3(){
   }    
 }
 
-module mouth4(){
+module mouth4(tooth = true){
   difference(){
     translate([6, 0, -4])
     resize([10, 15, 3])
     rotate([0, 90, 0])
     cylinder(10, 2, 2);
     
-    translate([-1, -4, -4])
-    cube([22, 2, 2]);
-    translate([-1, 2, -4])
-    cube([22, 2, 2]); 
-    translate([-1, -1, -6])
-    cube([22, 2, 2]);
-    }
+    if(tooth) {
+       translate([-1, -4, -4])
+       cube([22, 2, 2]);
+       translate([-1, 2, -4])
+       cube([22, 2, 2]); 
+       translate([-1, -1, -6])
+       cube([22, 2, 2]);
+     }
+  }
 }
 
 module mouth5(){
@@ -434,4 +482,31 @@ module mouth6(){
     translate([-1, -1, -2])
     cube([10, 2, 4]);
   }
+}
+
+module mouth7(tooth){
+   difference(){
+    translate([6, 0, -5])
+    resize([10, 8, 4])
+    rotate([0, 90, 0])
+    cylinder(10, 2, 2);
+    
+    if(tooth) {
+       translate([-1, -3, -7])
+       cube([22, 2, 2]);
+     }    
+   }
+}
+
+module mouth7(tooth){
+   difference(){
+    translate([6, -5, -5])
+    resize([10, 10, 2])
+    cube(10);
+    
+    if(tooth) {
+       translate([-1, -3, -6])
+       cube([22, 2, 2]);
+     }    
+   }
 }
