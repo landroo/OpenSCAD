@@ -159,12 +159,12 @@ module star6() {
 // star 2 
 //difference(){
 difference(){
-   star2(6, 0);
+   //star2(6, 0);
    //star2(7, 38);
    //star2(8, 0);
    //star2(9, 10);
    //star2(10, 0);
-   translate([0, 0, 13]) cylinder(15, 2.6, 2.6);
+   //translate([0, 0, 13]) cylinder(15, 2.6, 2.6);
 }
 //translate([-30, -10, -30])cube([60, 10, 60]);//
 //}
@@ -216,3 +216,47 @@ difference(){
 }
 translate([0, 0, 50])sphere(5);
 */
+
+
+/*
+hull(){
+   cylinder(20, 5, 0);
+   regular_polygon(height = 1, order = 6, r = 6);
+}
+*/
+
+
+topstar();
+mirror([0, 0, 1]) topstar();
+rotate([0, 90, 36]) translate([0, 0, 10]) difference() {
+   cylinder(80, 5, 10);
+   cylinder(80, 3, 8);
+}
+
+module topstar() {
+   hull(){
+      cylinder(10, 20, .1);
+      translate([100, 0, 0]) sphere(.1);
+   }
+
+   rotate([0, 0, 360 / 5]) hull(){
+      cylinder(10, 20, .1);
+      translate([100, 0, 0]) sphere(.1);
+   }
+   
+   rotate([0, 0, 360 / 5 * 2]) hull(){
+      cylinder(10, 20, .1);
+      translate([100, 0, 0]) sphere(.1);
+   }
+   
+   rotate([0, 0, 360 / 5 * 3]) hull(){
+      cylinder(10, 20, .1);
+      translate([100, 0, 0]) sphere(.1);
+   }
+
+   rotate([0, 0, 360 / 5 * 4]) hull(){
+      cylinder(10, 20, .1);
+      translate([100, 0, 0]) sphere(.1);
+   }
+   
+}
