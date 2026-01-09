@@ -1,19 +1,21 @@
 
-$fa = 2;
+$fa = 1;
 $fs = 0.4;
 
+uppart = false;
+sideview = false;
 
 module rcylinder(h, r1, r2, e = 2) {
 
   translate([0, 0, e])
     rotate_extrude(convexity = 10)
       translate([r1 - e, 0, 0])
-        circle(r = e, $fn = 10);
+        circle(r = e, $fn = 50);
 
   translate([0, 0, h - e])
     rotate_extrude(convexity = 10)
       translate([r2 - e, 0, 0])
-        circle(r = e, $fn = 10);
+        circle(r = e, $fn = 50);
 
   translate([0, 0, e])
     cylinder(h - e * 2, r1, r2);
@@ -78,22 +80,23 @@ module body(part){
     
       // outside
       union() {
-         translate([0, -22, 0]) rcube(80, 52, 18, 4);
-         translate([0, 0, 0]) rcylinder(18, 30, 30, 2);
-         translate([80, 0, 0]) rcylinder(18, 30, 30, 2);
+         translate([0, -22, 0]) rcube(80, 52, 22, 4);
+         rcylinder(22, 30, 30, 2);
+         translate([80, 0, 0]) rcylinder(22, 30, 30, 2);
       }
 
       // inside
-      translate([0, 0, 2]) cylinder(14, 28, 28, 2);
-      translate([80, 0, 2]) cylinder(14, 28, 28, 2);
-      translate([0, -20, 2]) cube([80, 48, 14]);
+      translate([0, 0, 2]) cylinder(18, 28, 28, 2);
+      translate([80, 0, 2]) cylinder(18, 28, 28, 2);
+      translate([0, -20, 2]) cube([80, 48, 18]);
 
       // left joystick
-      //translate([0, 0, 10]) cylinder(20, 12, 12);
+      //translate([-.5, -.5, 10]) cylinder(20, 13, 13);
 
       // left cross
       translate([-12.5, -4.5, 10]) cube([25, 9, 20]);
       translate([-4.5, -12.5, 10]) cube([9, 25, 20]);
+
 
       // right button 1
       translate([90, 2, 10]) cylinder(20, 5, 5);
@@ -117,7 +120,7 @@ module body(part){
             cylinder(8, 1.5, 1.5);
             
       // switch
-      translate([36, -24, 12]) cube([7, 8, 3]);
+      translate([36, -24, 15.5]) cube([7, 8, 3.5]);
 
       // upper part
       if(part == 1) {
@@ -132,37 +135,44 @@ module body(part){
   if(part == 1) {
     // right button 1
     difference(){
-      translate([90, 2, 10]) cylinder(8, 7, 7);
+      translate([90, 2, 10]) cylinder(10, 7, 7);
       translate([90, 2, 2]) cylinder(20, 5, 5);
     }
     // right button 2
     difference(){
-      translate([80, -9, 10]) cylinder(8, 7, 7);
+      translate([80, -9, 10]) cylinder(10, 7, 7);
       translate([80, -9, 2]) cylinder(20, 5, 5);
     }
     // right button 3
     difference(){
-      translate([80, 13, 10]) cylinder(8, 7, 7);
+      translate([80, 13, 10]) cylinder(10, 7, 7);
       translate([80, 13, 2]) cylinder(20, 5, 5);
     }
     // right button 4
     difference(){
-      translate([70, 2, 10]) cylinder(8, 7, 7);
+      translate([70, 2, 10]) cylinder(10, 7, 7);
       translate([70, 2, 2]) cylinder(20, 5, 5);
     }
 
     // mid display
     difference(){
-      translate([32, 11, 14]) cube([16, 12, 4]);
+      translate([32, 11, 19]) cube([16, 12, 3]);
       translate([34, 13, 10]) cube([12, 8, 20]);
     }
     
     // controller case
     difference(){
-      translate([27.5, -1, 14]) cube([25, 29, 4]);
+      translate([27.5, -1, 15]) cube([25, 29, 5]);
       translate([29.5, 1, 8]) cube([21, 27, 16]);
       translate([31.5, -10, 8]) cube([16, 27, 16]);
     }
+    
+      // switch
+    difference(){
+      translate([31.5, -20, 13]) cube([17, 5, 8]);
+      translate([33.5, -24, 13.5]) cube([13, 12, 7]);
+    }
+
   }
 
   if(part == 2) {
@@ -199,48 +209,51 @@ module body(part){
          //translate([4, 0, 0]) cube([2, 10, 5]);
       }
 
-      // X button
-     // button 1
-     translate([5, -6, 2])
-        difference(){
-           cube([10, 10, 3.5]);
-           translate([2, 2, 0]) cube([6.1, 6.1, 5]);
-           translate([0, 4, 0]) cube([10, 2, 5]);
-           //translate([4, 0, 0]) cube([2, 10, 5]);
-        }
-     // button 2
-     translate([-5, -15, 2])
-        difference(){
-           cube([10, 10, 3.5]);
-           translate([2, 2, 0]) cube([6.1, 6.1, 5]);
-           translate([0, 4, 0]) cube([10, 2, 5]);
-           //translate([4, 0, 0]) cube([2, 10, 5]);
-        }
-     // button 3
-     translate([-5, 4, 2])
-        difference(){
-           cube([10, 10, 3.5]);
-           translate([2, 2, 0]) cube([6, 6, 5]);
-           translate([0, 4, 0]) cube([10, 2, 5]);
-           //translate([4, 0, 0]) cube([2, 10, 5]);
-        }
-     // button4
-     translate([-14, -5, 2])
-        difference(){
-           cube([10, 10, 3.5]);
-           translate([2, 2, 0]) cube([6.1, 6.1, 5]);
-           translate([0, 4, 0]) cube([10, 2, 5]);
-           //translate([4, 0, 0]) cube([2, 10, 5]);
-        }
-     
-        // middle X
-        difference() {
-          translate([-5, -5, 2])   
-            cube([10, 10, 6]);
-          translate([0, 0, 8])
-            sphere(3);
-        }
-
+    // X button
+    translate([0, 0, 7.5]) {
+       // button 1
+       translate([4, -5, 4])
+          difference(){
+             cube([10, 10, 3.5]);
+             translate([2, 2, 0]) cube([6.1, 6.1, 5]);
+             translate([4, 0, 0]) cube([2, 10, 5]);
+             //translate([4, 0, 0]) cube([2, 10, 5]);
+          }
+       // button 2
+       translate([-5, -14, 4])
+          difference(){
+             cube([10, 10, 3.5]);
+             translate([2, 2, 0]) cube([6.1, 6.1, 5]);
+             translate([0, 4, 0]) cube([10, 2, 5]);
+             //translate([4, 0, 0]) cube([2, 10, 5]);
+          }
+       // button 3
+       translate([-5, 4, 4])
+          difference(){
+             cube([10, 10, 3.5]);
+             translate([2, 2, 0]) cube([6, 6, 5]);
+             translate([0, 4, 0]) cube([10, 2, 5]);
+             //translate([4, 0, 0]) cube([2, 10, 5]);
+          }
+       // button4
+       translate([-14, -5, 4])
+          difference(){
+             cube([10, 10, 3.5]);
+             translate([2, 2, 0]) cube([6.1, 6.1, 5]);
+             translate([4, 0, 0]) cube([2, 10, 5]);
+             //translate([4, 0, 0]) cube([2, 10, 5]);
+          }
+       
+          // middle X
+          difference() {
+            translate([0, 0, 2]) cylinder(6, 3.5, 3.5);
+            translate([0, 0, 9.5]) sphere(3);
+          }
+      }
+      
+      // X cutton base
+      translate([0, 0, 0]) cylinder(12, 16, 16);
+      
       // controller case
       translate([28, 0, 0])   
          difference() {
@@ -249,17 +262,18 @@ module body(part){
          }
       
       // controller base
-      translate([33, 13, 10]) cube([14, 15, 2]);
+      translate([33, 13, 10]) cube([14, 15, 5]);
    }
    
 }
 
+//innerEdge();
 module innerEdge() {
   difference(){
     union() {
       translate([0, 0, 6]) cylinder(10, 29, 29, 2);
       translate([80, 0, 6]) cylinder(10, 29, 29, 2);
-      translate([0, -18, 6]) cube([80, 47, 10]);
+      translate([0, -18, 6]) cube([80, 47, 8]);
     }
     
     translate([0, 0, 5]) cylinder(12, 28, 28, 2);
@@ -272,9 +286,9 @@ module innerEdge() {
 module outerEdge() {
   difference(){
     union() {
-      translate([0, 0, 6]) cylinder(6, 30, 30, 2);
-      translate([80, 0, 6]) cylinder(6, 30, 30, 2);
-        translate([0, -22, 6]) cube([80, 52, 6]);
+      translate([0, 0, 6]) cylinder(10, 30, 30, 2);
+      translate([80, 0, 6]) cylinder(10, 30, 30, 2);
+        translate([0, -22, 6]) cube([80, 52, 8]);
     }
     
     translate([0, 0, 5]) cylinder(12, 29, 29, 2);
@@ -284,19 +298,42 @@ module outerEdge() {
   }
 }
 
-uppart = true;
-if(uppart){
-  body(1);
-  outerEdge();
+module buttonX(){
+  include<buttonX.scad>;
+}
+
+if(sideview) {
+   difference() {
+     union() {
+       body(1);
+       body(2);
+
+       translate([0, 0, 17.75]) buttonX();  
+       
+     }
+     translate([-40, -50, -10])
+     cube([150, 50, 50]);
+   }  
 }
 else{
-  difference() {
-     body(2);
+   if(uppart){
+     body(1);
      outerEdge();
-  }
+   }
+   else{
+     difference() {
+        body(2);
+        outerEdge();
+     }
+   }
 }
-
    
-//innerEdge();
 
+
+
+
+
+  
+  
+  
 

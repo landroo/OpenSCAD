@@ -2,7 +2,6 @@
 $fa = 1;
 $fs = 0.4;
 
-uppart = false;
 
 module rcylinder(h, r1, r2, e = 2) {
 
@@ -90,7 +89,7 @@ module body(part){
       translate([0, -20, 2]) cube([80, 48, 18]);
 
       // left joystick
-      translate([-.5, -.5, 10]) cylinder(20, 13, 13);
+      translate([0, 0, 10]) cylinder(20, 13, 13);
 
       // left cross
       //translate([-12, -5, 10]) cube([24, 8, 20]);
@@ -225,7 +224,7 @@ module body(part){
          }
       
       // controller base
-      translate([33, 13, 10]) cube([14, 15, 4]);
+      translate([33, 13, 10]) cube([14, 15, 5]);
    }
    
 }
@@ -260,6 +259,7 @@ module outerEdge() {
   }
 }
 
+uppart = true;
 if(uppart){
   body(1);
   outerEdge();
