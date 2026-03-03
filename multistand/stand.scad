@@ -3,10 +3,9 @@ $fs = 0.4;
 
 use <threads.scad>
 
-
 //clamp(30);
 //screw(80, 16);
-//nut(20);
+//nut(10);
 //bolt(50);
 //base();
 
@@ -14,9 +13,18 @@ use <threads.scad>
 //cylinder(10, 2.5, 2.5);
 
 // vise
-vise(110);
-translate([100, 0, 0]) visehead();
-translate([0, 40, 0]) rotate([0, 0, -90]) screw(170);
+//vise(110);
+//translate([100, 0, 0]) visehead();
+
+// vise screw
+difference() {
+   translate([0, 40, 0]) rotate([0, 0, -90]) screw(170);
+   translate([40, 30, 10]) rotate([0, 90, 0]) cylinder(3, 7.5, 7.5);
+}
+translate([40, 30, 10]) rotate([0, 90, 0]) cylinder(5, 5, 5);
+translate([0, 30, 10]) rotate([0, 90, 0]) cylinder(40, 7.5, 7.5);
+
+// vise ring
 //difference(){cylinder(10, 9, 7.5);cylinder(10, 7.5, 7.5);}
 
 module vise(ln = 130) {
@@ -52,7 +60,7 @@ module vise(ln = 130) {
           
       translate([0, 30, 20]) 
         rotate([0, 90, 0]) 
-          cylinder(60, 7.5, 7.5);
+          cylinder(60, 7.6, 7.6);
     }
 
     difference(){
@@ -120,11 +128,12 @@ module clamp(hg = 50) {
        cylinder(20, 10, 10);
 */   
    translate([0, hg + 30, 0])
-      AugerHole(16, 10, 60, 5, [10, 30, 10], [90,0,0]){
-         cube([60, 20, 20]);
-            translate([60, 10, 0])
+      AugerHole(16, 10, 60, 5, [30, 30, 10], [90,0,0]){
+         translate([20, 0, 0])
+            cube([40, 20, 20]);
+         translate([60, 10, 0])
             cylinder(20, 10, 10);
-         translate([0, 10, 0])
+         translate([20, 10, 0])
             cylinder(20, 10, 10);
       }
 
@@ -200,11 +209,11 @@ rotate([90, 0, 0])
    }
 }
 
-module base() {
-   cylinder(2, 50, 50);
+module base(rd = 30) {
+   cylinder(2, rd * 2, rd * 2);
 
    AugerHole(16, 10, 60, 5){
-      cylinder(20, 30, 0);
+      cylinder(20, rd, 5);
    }
 }
 
