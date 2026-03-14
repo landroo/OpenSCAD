@@ -10,10 +10,10 @@ base = false;
 front = false;
 lside = false;
 rside = false;
-bpitop = true;
+bpitop = false;
 hdd = false;
-hddtop = false;
-hdd2 = false;
+hddtop = true;
+hdd2 = true;
 
 module BPiF3() {
    cube([148, 100, 24]);
@@ -190,12 +190,15 @@ module HDD(slot = false, bottom = true) {
    // right
   translate([-3, -4, 34])
     difference() {
-      cube([173, 2, 27.5]);
+      cube([173, 2, 27]);
 
       for(i = [4: 2: 76])
          translate([i * 2 + 12, 0, 2])
             cube([2, 4, 19]);
             
+      for(i = [1: 2: 15])
+        translate([i * 10 + 3, -8, 25])
+            cube([10, 10, 10]);
             
       translate([-7, 10, 23])
          rotate([90, 0, 0])
@@ -205,28 +208,31 @@ module HDD(slot = false, bottom = true) {
    // left
    translate([-3, 101, 34])
       difference() {
-         cube([173, 2, 27.5]);
+         cube([173, 2, 27]);
 
          for(i = [4: 2: 76])
                translate([i * 2 + 12, 0, 2])
                   cube([2, 4, 19]);
+                  
+      for(i = [1: 2: 15])
+        translate([i * 10 + 3, -8, 25])
+            cube([10, 10, 10]);                  
 
          translate([-7, 10, 23])
             rotate([90, 0, 0])
                cylinder(10, 24, 24);
-               
       }
 
    //back
    translate([168, -4, 34])    
       difference() {
-         cube([2, 106, 27.5]);
+         cube([2, 106, 27]);
             for(i = [4: 2: 48])
                translate([0, i * 2, 2])
                   cube([2, 2, 19]);
             
             for(i = [1: 2: 14])
-               translate([0, i * 10 - 20, 25.5])
+               translate([0, i * 10 - 20, 25])
                   cube([10, 10, 10]);            
       }
     
@@ -243,7 +249,7 @@ module HDD(slot = false, bottom = true) {
 
 module HDDTop(hdd2 = false) {
 color([1,0,0,1])
-  translate([-3, -4, 59.5])
+  translate([-3, -4, 59])
     difference() {
       cube([173, 107, 2]);
       
@@ -300,4 +306,4 @@ if(rside) RSide();
 if(bpitop) BPiTop();
 if(hdd) HDD(true);
 if(hddtop) HDDTop(true);
-if(hdd2) translate([0, 0, 27.5]) HDD(false, false);
+if(hdd2) translate([0, 0, 27]) HDD(false, false);
