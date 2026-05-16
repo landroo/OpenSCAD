@@ -3,7 +3,8 @@ $fs = 1;
 
 include <rwall.scad>
 
-s = 200;
+s = 120;
+h = 25;
 wing = true;
 box = true;
 side = false;
@@ -14,9 +15,9 @@ side = false;
 
 //
 module wing() {
-  translate([s / 2 + 10, 0, 5])
+  translate([s / 2, 0, 5])
   difference() {
-    resize([s, s / 2, 20])
+    resize([s, s / 2, h])
       difference() {
         sphere(10);
         sphere(9);
@@ -41,23 +42,23 @@ module wings(){
             wing();
 
     // outer ring
-    translate([0, 0, -5])
+    translate([0, 0, 15 - h])
       difference() {
-        cylinder(20, s / 2 + 10,  s / 2 + 50);
-        cylinder(20, s / 2 - 2,  s / 2 - 2);
+        cylinder(h, s / 2 + 10,  s / 2 + 50);
+        cylinder(h, s / 2 - 2,  s / 2 - 2);
       }
     
     // middle hole  
-    translate([0, 0, -5]) cylinder(20, 13, 13);
+    translate([0, 0, 15 - h]) cylinder(h, 13, 13);
   }
   
   // middle
-  translate([0, 0, -4])
+  translate([0, 0, 15 - h])
   difference() {
-    rcylinder(19, 15, 15);
-    translate([-20, -20, 14.5]) cube([40, 40, 40]);
-    translate([0, 0, 4]) cylinder(15, 12.5, 12.5);
-    translate([0, 0, 0]) cylinder(15, 1.2, 1.2);
+    rcylinder(h, 15, 15);
+    translate([-20, -20, h - 4.5]) cube([40, 40, 40]);
+    translate([0, 0, h - 16]) cylinder(h - 5, 12.5, 12.5);
+    translate([0, 0, 0]) cylinder(h - 5, 1.15, 1.15);
   }
   
   //translate([-s/2, -s/2, -15]) cube([s, s, 10]);
@@ -67,16 +68,16 @@ module wings(){
 module box() {
 
   difference(){
-    translate([0, 0, -5]) rpoly(4, 20, s - 2.9, 5);
+    translate([0, 0, 15 - h]) rpoly(4, h, s - 2.9, 5);
     
     // 
-    translate([0, 0, -10])  cylinder(30, s / 2 - 1,  s / 2 - 1);
+    translate([0, 0, -h + 10]) cylinder(h + 10, s / 2 - 1,  s / 2 - 1);
     
     // holes
-    translate([-s / 2 + 5, -s / 2 + 5, -10]) cylinder(30, 2, 2);
-    translate([-s / 2 + 5, s / 2 - 5, -10]) cylinder(30, 2, 2);
-    translate([s / 2 - 5, s / 2 - 5, -10]) cylinder(30, 2, 2);
-    translate([s / 2 - 5, -s / 2 + 5, -10]) cylinder(30, 2, 2);    
+    translate([-s / 2 + 5, -s / 2 + 5, -h + 10]) cylinder(h + 10, 2, 2);
+    translate([-s / 2 + 5, s / 2 - 5, -h + 10]) cylinder(h + 10, 2, 2);
+    translate([s / 2 - 5, s / 2 - 5, -h + 10]) cylinder(h + 10, 2, 2);
+    translate([s / 2 - 5, -s / 2 + 5, -h + 10]) cylinder(h + 10, 2, 2);    
   }
 
   // outer ring
@@ -92,7 +93,7 @@ module box() {
       translate([-s / 2, -3, 11]) cube([s, 6, 4]);
       translate([-3, -s / 2, 11]) cube([6, s, 4]);
     }
-    cylinder(20, 13, 13);
+    cylinder(h, 13, 13);
   }
   
   // holder ring
@@ -100,6 +101,7 @@ module box() {
   difference(){
     cylinder(4, 16, 16);
     cylinder(4, 12.25, 12.25);
+    translate([12, 0, 0]) cylinder(10, 2, 2);
   }
 }
 
